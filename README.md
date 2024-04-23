@@ -1,32 +1,29 @@
-# Text generation web UI
+# Text generation web UI mod for multi-user moode
 
-A Gradio web UI for Large Language Models.
+A simple mod for running the ui for mutliple users.
 
-Its goal is to become the [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) of text generation.
+## Screenshots
 
-|![Image1](https://github.com/oobabooga/screenshots/raw/main/print_instruct.png) | ![Image2](https://github.com/oobabooga/screenshots/raw/main/print_chat.png) |
+| ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/f762b542-3c19-45ff-b13e-6820613ea887) |![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/46176c96-f411-4d81-8261-cc7285d76400)|
 |:---:|:---:|
 |![Image1](https://github.com/oobabooga/screenshots/raw/main/print_default.png) | ![Image2](https://github.com/oobabooga/screenshots/raw/main/print_parameters.png) |
 
 ## Features
 
-* 3 interface modes: default (two columns), notebook, and chat.
-* Multiple model backends: [Transformers](https://github.com/huggingface/transformers), [llama.cpp](https://github.com/ggerganov/llama.cpp) (through [llama-cpp-python](https://github.com/abetlen/llama-cpp-python)), [ExLlamaV2](https://github.com/turboderp/exllamav2), [AutoGPTQ](https://github.com/PanQiWei/AutoGPTQ), [AutoAWQ](https://github.com/casper-hansen/AutoAWQ), [GPTQ-for-LLaMa](https://github.com/qwopqwop200/GPTQ-for-LLaMa), [QuIP#](https://github.com/Cornell-RelaxML/quip-sharp).
-* Dropdown menu for quickly switching between different models.
-* Large number of extensions (built-in and user-contributed), including Coqui TTS for realistic voice outputs, Whisper STT for voice inputs, translation, [multimodal pipelines](https://github.com/oobabooga/text-generation-webui/tree/main/extensions/multimodal), vector databases, Stable Diffusion integration, and a lot more. See [the wiki](https://github.com/oobabooga/text-generation-webui/wiki/07-%E2%80%90-Extensions) and [the extensions directory](https://github.com/oobabooga/text-generation-webui-extensions) for details.
-* [Chat with custom characters](https://github.com/oobabooga/text-generation-webui/wiki/03-%E2%80%90-Parameters-Tab#character).
-* Precise chat templates for instruction-following models, including Llama-2-chat, Alpaca, Vicuna, Mistral.
-* LoRA: train new LoRAs with your own data, load/unload LoRAs on the fly for generation.
-* Transformers library integration: load models in 4-bit or 8-bit precision through bitsandbytes, use llama.cpp with transformers samplers (`llamacpp_HF` loader), CPU inference in 32-bit precision using PyTorch.
-* OpenAI-compatible API server with Chat and Completions endpoints -- see the [examples](https://github.com/oobabooga/text-generation-webui/wiki/12-%E2%80%90-OpenAI-API#examples).
+* Single Interface : chat.
+* Save chats in multi-user mode, chats saved under
+  ```logs/chat/character/username/```
+* Logout button to terminate the ui
+* logger info indicating ui termination
 
 ## How to install
 
 1) Clone or [download](https://github.com/oobabooga/text-generation-webui/archive/refs/heads/main.zip) the repository.
-2) Run the `start_linux.sh`, `start_windows.bat`, `start_macos.sh`, or `start_wsl.bat` script depending on your OS.
-3) Select your GPU vendor when asked.
-4) Once the installation ends, browse to `http://localhost:7860/?__theme=dark`.
-5) Have fun!
+2) if this is your first time just follow the orignal method given and then replace the files as follows
+   *
+4) Select your GPU vendor when asked.
+5) Once the installation ends, browse to `http://localhost:7860/?__theme=dark`.
+6) Have fun!
 
 To restart the web UI in the future, just run the `start_` script again. This script creates an `installer_files` folder where it sets up the project's requirements. In case you need to reinstall the requirements, you can simply delete that folder and start the web UI again.
 
