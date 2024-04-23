@@ -32,6 +32,7 @@ A simple mod for running the ui for mutliple users.
 # NOTE
   * The following modification are only made to work with ```--multi-user``` mode, to run the orignal ui, replace the original files.
   * The files used here are bit older than the latest repo ( about 1 month), updated files have new features so this mod wouldnt work with the latest files.
+  * link to mod : ```https://mega.nz/file/4bsAUTLT#l6ATbi-oqsP9LdTymcqQVaLu98sCzmnMcMfTS_AG8sk```
 
 
 
