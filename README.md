@@ -31,7 +31,6 @@ A simple mod for running the ui for mutliple users.
 
 # NOTE
   * The following modification are only made to work with ```--multi-user``` mode, to run the orignal ui, replace the original files.
-  * save chat saves the chats under the character ```Carl``` by default, so you may encounter error while saving the chats under different Character( will change this to work with any character soon).
   * The files used here are bit older than the latest repo ( about 1 month), updated files have new features so this mod wouldnt work with the latest files.
 
 
