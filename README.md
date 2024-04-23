@@ -1,13 +1,13 @@
-# Text generation web UI mod for multi-user moode
+# Text generation web UI mod for multi-user mode
 
 A simple mod for running the ui for mutliple users.
 
 ## Screenshots
 
-| ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/f762b542-3c19-45ff-b13e-6820613ea887) |![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/46176c96-f411-4d81-8261-cc7285d76400)|
+| ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/1ffbc7ac-c9c5-4abb-8e05-5d4f63c9fa81)|![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/46176c96-f411-4d81-8261-cc7285d76400)|
 |:---:|:---:|
-|![Image1](https://github.com/oobabooga/screenshots/raw/main/print_default.png) | ![Image2](https://github.com/oobabooga/screenshots/raw/main/print_parameters.png) |
-
+### Log
+![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/eaba1b7c-792b-4794-b262-c033b93270f7)
 ## Features
 
 * Single Interface : chat.
@@ -16,186 +16,26 @@ A simple mod for running the ui for mutliple users.
 * Logout button to terminate the ui
 * logger info indicating ui termination
 
-## How to install
-
+## How to install the mod
 1) Clone or [download](https://github.com/oobabooga/text-generation-webui/archive/refs/heads/main.zip) the repository.
-2) if this is your first time just follow the orignal method given and then replace the files as follows
-   *
-4) Select your GPU vendor when asked.
-5) Once the installation ends, browse to `http://localhost:7860/?__theme=dark`.
-6) Have fun!
+2) create the backup of these files : ui_chat.py , server.py , shared.py, chat.py ( location given in next point).
+3) if this is your first time just follow the orignal method given and then replace the files as follows
+   * ui_chat,shared,chat in modules
+   * server in main dir
+   * main.css in css
+4) Once replaced run the server.py with custom arguments like
+   ```
+   python server.py --character Carl --settings settings-template.yaml --multi-user --username goof --listen-port 4000
+   ```
+6) Once the ui loads you can then terminate the session using logout button.
 
-To restart the web UI in the future, just run the `start_` script again. This script creates an `installer_files` folder where it sets up the project's requirements. In case you need to reinstall the requirements, you can simply delete that folder and start the web UI again.
+# NOTE
+  * The following modification are only made to work with ```--multi-user``` mode, to run the orignal ui, replace the original files.
+  * save chat saves the chats under the character ```Carl``` by default, so you may encounter error while saving the chats under different Character( will change this to work with any character soon).
+  * The files used here are bit older than the latest repo ( about 1 month), updated files have new features so this mod wouldnt work with the latest files.
 
-The script accepts command-line flags. Alternatively, you can edit the `CMD_FLAGS.txt` file with a text editor and add your flags there.
 
-To get updates in the future, run `update_wizard_linux.sh`, `update_wizard_windows.bat`, `update_wizard_macos.sh`, or `update_wizard_wsl.bat`.
 
-<details>
-<summary>
-Setup details and information about installing manually
-</summary>
-
-### One-click-installer
-
-The script uses Miniconda to set up a Conda environment in the `installer_files` folder.
-
-If you ever need to install something manually in the `installer_files` environment, you can launch an interactive shell using the cmd script: `cmd_linux.sh`, `cmd_windows.bat`, `cmd_macos.sh`, or `cmd_wsl.bat`.
-
-* There is no need to run any of those scripts (`start_`, `update_wizard_`, or `cmd_`) as admin/root.
-* To install the requirements for extensions, you can use the `extensions_reqs` script for your OS. At the end, this script will install the main requirements for the project to make sure that they take precedence in case of version conflicts.
-* For additional instructions about AMD and WSL setup, consult [the documentation](https://github.com/oobabooga/text-generation-webui/wiki).
-* For automated installation, you can use the `GPU_CHOICE`, `USE_CUDA118`, `LAUNCH_AFTER_INSTALL`, and `INSTALL_EXTENSIONS` environment variables. For instance: `GPU_CHOICE=A USE_CUDA118=FALSE LAUNCH_AFTER_INSTALL=FALSE INSTALL_EXTENSIONS=TRUE ./start_linux.sh`.
-
-### Manual installation using Conda
-
-Recommended if you have some experience with the command-line.
-
-#### 0. Install Conda
-
-https://docs.conda.io/en/latest/miniconda.html
-
-On Linux or WSL, it can be automatically installed with these two commands ([source](https://educe-ubc.github.io/conda.html)):
-
-```
-curl -sL "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" > "Miniconda3.sh"
-bash Miniconda3.sh
-```
-
-#### 1. Create a new conda environment
-
-```
-conda create -n textgen python=3.11
-conda activate textgen
-```
-
-#### 2. Install Pytorch
-
-| System | GPU | Command |
-|--------|---------|---------|
-| Linux/WSL | NVIDIA | `pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu121` |
-| Linux/WSL | CPU only | `pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cpu` |
-| Linux | AMD | `pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/rocm5.6` |
-| MacOS + MPS | Any | `pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1` |
-| Windows | NVIDIA | `pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu121` |
-| Windows | CPU only | `pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1` |
-
-The up-to-date commands can be found here: https://pytorch.org/get-started/locally/.
-
-For NVIDIA, you also need to install the CUDA runtime libraries:
-
-```
-conda install -y -c "nvidia/label/cuda-12.1.1" cuda-runtime
-```
-
-If you need `nvcc` to compile some library manually, replace the command above with
-
-```
-conda install -y -c "nvidia/label/cuda-12.1.1" cuda
-```
-
-#### 3. Install the web UI
-
-```
-git clone https://github.com/oobabooga/text-generation-webui
-cd text-generation-webui
-pip install -r <requirements file according to table below>
-```
-
-Requirements file to use:
-
-| GPU | CPU | requirements file to use |
-|--------|---------|---------|
-| NVIDIA | has AVX2 | `requirements.txt` |
-| NVIDIA | no AVX2 | `requirements_noavx2.txt` |
-| AMD | has AVX2 | `requirements_amd.txt` |
-| AMD | no AVX2 | `requirements_amd_noavx2.txt` |
-| CPU only | has AVX2 | `requirements_cpu_only.txt` |
-| CPU only | no AVX2 | `requirements_cpu_only_noavx2.txt` |
-| Apple | Intel | `requirements_apple_intel.txt` |
-| Apple | Apple Silicon | `requirements_apple_silicon.txt` |
-
-### Start the web UI
-
-```
-conda activate textgen
-cd text-generation-webui
-python server.py
-```
-
-Then browse to
-
-`http://localhost:7860/?__theme=dark`
-
-##### AMD GPU on Windows
-
-1) Use `requirements_cpu_only.txt` or `requirements_cpu_only_noavx2.txt` in the command above.
-
-2) Manually install llama-cpp-python using the appropriate command for your hardware: [Installation from PyPI](https://github.com/abetlen/llama-cpp-python#installation-with-hardware-acceleration).
-    * Use the `LLAMA_HIPBLAS=on` toggle.
-    * Note the [Windows remarks](https://github.com/abetlen/llama-cpp-python#windows-remarks).
-
-3) Manually install AutoGPTQ: [Installation](https://github.com/PanQiWei/AutoGPTQ#install-from-source).
-    * Perform the from-source installation - there are no prebuilt ROCm packages for Windows.
-
-##### Older NVIDIA GPUs
-
-1) For Kepler GPUs and older, you will need to install CUDA 11.8 instead of 12:
-
-```
-pip3 install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu118
-conda install -y -c "nvidia/label/cuda-11.8.0" cuda-runtime
-```
-
-2) bitsandbytes >= 0.39 may not work. In that case, to use `--load-in-8bit`, you may have to downgrade like this:
-    * Linux: `pip install bitsandbytes==0.38.1`
-    * Windows: `pip install https://github.com/jllllll/bitsandbytes-windows-webui/raw/main/bitsandbytes-0.38.1-py3-none-any.whl`
-
-##### Manual install
-
-The `requirements*.txt` above contain various wheels precompiled through GitHub Actions. If you wish to compile things manually, or if you need to because no suitable wheels are available for your hardware, you can use `requirements_nowheels.txt` and then install your desired loaders manually.
-
-### Alternative: Docker
-
-```
-For NVIDIA GPU:
-ln -s docker/{nvidia/Dockerfile,nvidia/docker-compose.yml,.dockerignore} .
-For AMD GPU: 
-ln -s docker/{amd/Dockerfile,intel/docker-compose.yml,.dockerignore} .
-For Intel GPU:
-ln -s docker/{intel/Dockerfile,amd/docker-compose.yml,.dockerignore} .
-For CPU only
-ln -s docker/{cpu/Dockerfile,cpu/docker-compose.yml,.dockerignore} .
-cp docker/.env.example .env
-#Create logs/cache dir : 
-mkdir -p logs cache
-# Edit .env and set: 
-#   TORCH_CUDA_ARCH_LIST based on your GPU model
-#   APP_RUNTIME_GID      your host user's group id (run `id -g` in a terminal)
-#   BUILD_EXTENIONS      optionally add comma separated list of extensions to build
-# Edit CMD_FLAGS.txt and add in it the options you want to execute (like --listen --cpu)
-# 
-docker compose up --build
-```
-
-* You need to have Docker Compose v2.17 or higher installed. See [this guide](https://github.com/oobabooga/text-generation-webui/wiki/09-%E2%80%90-Docker) for instructions.
-* For additional docker files, check out [this repository](https://github.com/Atinoda/text-generation-webui-docker).
-
-### Updating the requirements
-
-From time to time, the `requirements*.txt` change. To update, use these commands:
-
-```
-conda activate textgen
-cd text-generation-webui
-pip install -r <requirements file that you have used> --upgrade
-```
-</details>
-
-<details>
-<summary>
-List of command-line flags
-</summary>
 
 #### Basic settings
 
