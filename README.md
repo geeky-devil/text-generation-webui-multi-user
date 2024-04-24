@@ -6,11 +6,17 @@ A simple mod for running the ui for mutliple users.
 # multi-user
 ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/f1eee252-a97a-4ad3-b845-eff5a7a2c3cc)
 
+![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/ad2f322c-2a8f-400f-af83-f8ecd604a9a7)
+
+
 ### Log
 ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/fcbc8748-846b-4040-ae8c-2da3893d8b09)
 
 ## original
 ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/059c9af0-3a14-4199-90c9-e15717993ef8)
+
+![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/1edf1838-b6de-4d2b-8ee0-365aef9fa600)
+
 
 
 ## Features
@@ -24,10 +30,10 @@ A simple mod for running the ui for mutliple users.
 ## How to install the latest mod
 1) Clone this repo.
 2) install the required files from the requirments.txt file
-3) launce the server.py file with custom args like
-   ```
-   python server.py --character Carl --settings settings-template.yaml --multi-user --username goof --listen-port 4000
-   ```
+3) launch the server.py file with custom args like
+ ```
+ python server.py --character Carl --settings settings-template.yaml --multi-user --username goof --listen-port 4000
+ ```
 
 ## How to install the  old mod
 1) download the old ui from the zip.
