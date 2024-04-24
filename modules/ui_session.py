@@ -7,7 +7,7 @@ from modules.utils import gradio
 
 def create_ui():
     mu = shared.args.multi_user
-    with gr.Tab("Session", elem_id="session-tab"):
+    with gr.Tab("Session", elem_id="session-tab",interactive=not mu,visible=not mu):
         with gr.Row():
             with gr.Column():
                 shared.gradio['reset_interface'] = gr.Button("Apply flags/extensions and restart", interactive=not mu)
