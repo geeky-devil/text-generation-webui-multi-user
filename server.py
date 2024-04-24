@@ -68,11 +68,25 @@ def signal_handler(sig, frame):
 
 
 signal.signal(signal.SIGINT, signal_handler)
-
-
+logout=None
+Logut_btn=None
+user="ANON"
 def create_interface():
 
     title = 'Text generation web UI'
+    if shared.args.multi_user:
+        if shared.args.username:
+            user=shared.args.username
+            if shared.args.character:
+                title=shared.args.character+" : "+user
+            else:
+                title=user
+
+        else:
+            if shared.args.character:
+                title=shared.args.character+" : "+user
+            else:
+                title=shared.args.character
 
     # Password authentication
     auth = []
@@ -154,6 +168,12 @@ def create_interface():
 
         extensions_module.create_extensions_tabs()  # Extensions tabs
         extensions_module.create_extensions_block()  # Extensions block
+        Logut_btn=ui_chat.button            #Logout
+        def log_onclick():
+            global logout
+            #print("OOOGABOOBA")
+            logout=True
+        Logut_btn.click(log_onclick)
 
     # Launch the interface
     shared.gradio['interface'].queue()
@@ -261,3 +281,7 @@ if __name__ == "__main__":
                 shared.gradio['interface'].close()
                 time.sleep(0.5)
                 create_interface()
+            if logout:
+                shared.gradio['interface'].close()
+                logger.info("Goodbye "+ shared.args.username)
+                sys.exit(0)
