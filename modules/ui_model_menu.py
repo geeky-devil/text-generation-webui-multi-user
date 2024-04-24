@@ -56,7 +56,7 @@ def create_ui():
     else:
         default_cpu_mem = 0
 
-    with gr.Tab("Model", elem_id="model-tab"):
+    with gr.Tab("Model", elem_id="model-tab",interactive=not mu,visible=not mu):
         with gr.Row():
             with gr.Column():
                 with gr.Row():
