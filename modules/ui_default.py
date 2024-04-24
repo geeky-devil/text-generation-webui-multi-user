@@ -15,7 +15,7 @@ outputs = ('output_textbox', 'html-default')
 
 def create_ui():
     mu = shared.args.multi_user
-    with gr.Tab('Default', elem_id='default-tab'):
+    with gr.Tab('Default', elem_id='default-tab',interactive=not mu,visible=not mu):
         shared.gradio['last_input-default'] = gr.State('')
         with gr.Row():
             with gr.Column():
