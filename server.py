@@ -72,7 +72,7 @@ logout=None
 Logut_btn=None
 user="ANON"
 def create_interface():
-
+    global user
     title = 'Text generation web UI'
     if shared.args.multi_user:
         if shared.args.username:
@@ -87,6 +87,7 @@ def create_interface():
                 title=shared.args.character+" : "+user
             else:
                 title=shared.args.character
+    else: user="Admin"
 
     # Password authentication
     auth = []
@@ -283,5 +284,5 @@ if __name__ == "__main__":
                 create_interface()
             if logout:
                 shared.gradio['interface'].close()
-                logger.info("Goodbye "+ shared.args.username)
+                logger.info("Goodbye "+ user)
                 sys.exit(0)
