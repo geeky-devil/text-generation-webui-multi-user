@@ -14,7 +14,7 @@ inputs = ('Chat input', 'interface_state')
 reload_arr = ('history', 'name1', 'name2', 'mode', 'chat_style', 'character_menu')
 clear_arr = ('delete_chat-confirm', 'delete_chat', 'delete_chat-cancel')
 
-
+button=None
 def create_ui():
     mu = shared.args.multi_user
 
@@ -63,14 +63,17 @@ def create_ui():
         with gr.Row(elem_id='past-chats-row', elem_classes=['pretty_scrollbar']):
             with gr.Column():
                 with gr.Row():
-                    shared.gradio['unique_id'] = gr.Dropdown(label='Past chats', elem_classes=['slim-dropdown'], interactive=not mu)
+                    shared.gradio['unique_id'] = gr.Dropdown(label='Past chats', elem_classes=['slim-dropdown'])#, interactive=not mu)
 
                 with gr.Row():
-                    shared.gradio['rename_chat'] = gr.Button('Rename', elem_classes='refresh-button', interactive=not mu)
-                    shared.gradio['delete_chat'] = gr.Button('🗑️', elem_classes='refresh-button', interactive=not mu)
+                    shared.gradio['rename_chat'] = gr.Button('Rename', elem_classes='refresh-button')#, interactive=not mu)
+                    shared.gradio['delete_chat'] = gr.Button('🗑️', elem_classes='refresh-button')#, interactive=not mu)
                     shared.gradio['delete_chat-confirm'] = gr.Button('Confirm', variant='stop', visible=False, elem_classes=['refresh-button', 'focus-on-chat-input'])
                     shared.gradio['delete_chat-cancel'] = gr.Button('Cancel', visible=False, elem_classes=['refresh-button', 'focus-on-chat-input'])
                     shared.gradio['Start new chat'] = gr.Button('New chat', elem_classes=['refresh-button', 'focus-on-chat-input'])
+                with gr.Row():
+                    global button
+                    button=gr.Button('Logout',elem_classes='Logout') # logout button created
 
                 with gr.Row(elem_id='rename-row'):
                     shared.gradio['rename_to'] = gr.Textbox(label='Rename to:', placeholder='New name', visible=False, elem_classes=['no-background'])
@@ -242,11 +245,15 @@ def create_event_handlers():
     shared.gradio['Stop'].click(
         stop_everything_event, None, None, queue=False).then(
         chat.redraw_html, gradio(reload_arr), gradio('display'))
+    
+    button.click(
+        stop_everything_event, None, None, queue=False).then(
+        chat.redraw_html, gradio(reload_arr), gradio('display')) #there might be an issue with this
 
-    if not shared.args.multi_user:
-        shared.gradio['unique_id'].select(
-            chat.load_history, gradio('unique_id', 'character_menu', 'mode'), gradio('history')).then(
-            chat.redraw_html, gradio(reload_arr), gradio('display'))
+    #if not shared.args.multi_user:
+    shared.gradio['unique_id'].select(
+        chat.load_history, gradio('unique_id', 'character_menu', 'mode'), gradio('history')).then(
+        chat.redraw_html, gradio(reload_arr), gradio('display'))
 
     shared.gradio['Start new chat'].click(
         ui.gather_interface_values, gradio(shared.input_elements), gradio('interface_state')).then(
