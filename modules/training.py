@@ -51,7 +51,7 @@ train_template = {}
 
 def create_ui():
     mu = shared.args.multi_user
-    with gr.Tab("Training", elem_id="training-tab"):
+    with gr.Tab("Training", elem_id="training-tab",interactive=not mu,visible=not mu):
         with gr.Tab('Train LoRA', elem_id='lora-train-tab'):
             tmp = gr.State('')
             with gr.Row():
