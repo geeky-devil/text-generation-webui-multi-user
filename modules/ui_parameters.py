@@ -9,7 +9,7 @@ from modules.utils import gradio
 def create_ui(default_preset):
     mu = shared.args.multi_user
     generate_params = presets.load_preset(default_preset)
-    with gr.Tab("Parameters", elem_id="parameters"):
+    with gr.Tab("Parameters", elem_id="parameters",interactive=not mu,visible=not mu):
         with gr.Tab("Generation"):
             with gr.Row():
                 with gr.Column():
