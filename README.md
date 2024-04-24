@@ -3,11 +3,16 @@
 A simple mod for running the ui for mutliple users.
 
 ## Screenshots
+# multi-user
+![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/f1eee252-a97a-4ad3-b845-eff5a7a2c3cc)
 
-| ![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/1ffbc7ac-c9c5-4abb-8e05-5d4f63c9fa81)|![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/46176c96-f411-4d81-8261-cc7285d76400)|
-|:---:|:---:|
 ### Log
-![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/eaba1b7c-792b-4794-b262-c033b93270f7)
+![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/fcbc8748-846b-4040-ae8c-2da3893d8b09)
+
+## original
+![image](https://github.com/geeky-devil/text-generation-webui-multi-user/assets/73377915/059c9af0-3a14-4199-90c9-e15717993ef8)
+
+
 ## Features
 
 * Single Interface : chat.
@@ -16,23 +21,23 @@ A simple mod for running the ui for mutliple users.
 * Logout button to terminate the ui
 * logger info indicating ui termination
 
-## How to install the mod
-1) Clone or [download](https://github.com/oobabooga/text-generation-webui/archive/refs/heads/main.zip) the repository.
+## How to install the latest mod
+1) Clone this repo.
+2) install the required files from the requirments.txt file
+3) launce the server.py file with custom args like
+   ```
+   python server.py --character Carl --settings settings-template.yaml --multi-user --username goof --listen-port 4000
+   ```
+
+## How to install the  old mod
+1) download the old ui from the zip.
 2) create the backup of these files : ui_chat.py , server.py , shared.py, chat.py ( location given in next point).
 3) if this is your first time just follow the orignal method given and then replace the files as follows
    * ui_chat,shared,chat in modules
    * server in main dir
    * main.css in css
-4) Once replaced run the server.py with custom arguments like
-   ```
-   python server.py --character Carl --settings settings-template.yaml --multi-user --username goof --listen-port 4000
-   ```
-6) Once the ui loads you can then terminate the session using logout button.
+4) Once replaced run the server.py as the mentioned earlier
 
-# NOTE
-  * The following modification are only made to work with ```--multi-user``` mode, to run the orignal ui, replace the original files.
-  * The files used here are bit older than the latest repo ( about 1 month), updated files have new features so this mod wouldnt work with the latest files.
-  * Have added the old version in repo.
 
 
 
