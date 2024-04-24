@@ -83,6 +83,7 @@ group.add_argument('--settings', type=str, help='Load the default interface sett
 group.add_argument('--extensions', type=str, nargs='+', help='The list of extensions to load. If you want to load more than one extension, write the names separated by spaces.')
 group.add_argument('--verbose', action='store_true', help='Print the prompts to the terminal.')
 group.add_argument('--chat-buttons', action='store_true', help='Show buttons on the chat tab instead of a hover menu.')
+group.add_argument('--username',type=str)
 
 # Model loader
 group = parser.add_argument_group('Model loader')
