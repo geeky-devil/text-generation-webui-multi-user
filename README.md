@@ -27,22 +27,13 @@ A simple mod for running the ui for mutliple users.
 * Logout button to terminate the ui
 * logger info indicating ui termination
 
-## How to install the latest mod
+## How to install
 1) Clone this repo.
 2) install the required files from the requirments.txt file
 3) launch the server.py file with custom args like
  ```
  python server.py --character Carl --settings settings-template.yaml --multi-user --username goof --listen-port 4000
  ```
-
-## How to install the  old mod
-1) download the old ui from the zip.
-2) create the backup of these files : ui_chat.py , server.py , shared.py, chat.py ( location given in next point).
-3) if this is your first time just follow the orignal method given and then replace the files as follows
-   * ui_chat,shared,chat in modules
-   * server in main dir
-   * main.css in css
-4) Once replaced run the server.py as the mentioned earlier
 
 
 
