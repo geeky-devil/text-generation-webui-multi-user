@@ -530,11 +530,9 @@ def find_all_histories(state):
             paths = Path(f'logs/chat/{character}/{shared.args.username}').glob('*.json')
             histories = sorted(paths, key=lambda x: x.stat().st_mtime, reverse=True)
             histories = [path.stem for path in histories]
-            print("PATH EXISTS")
-            print(len(histories))
-            print(histories)
             if len(histories)==0:
                 return [start_new_chat(state)]
+            return histories
         else:
             print("Path MISSING")
             histories=[start_new_chat(state)]
